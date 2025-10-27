@@ -1,0 +1,5 @@
+streamlit==1.30.0
+gspread==5.12.0
+pandas==2.1.0
+gspread_dataframe==3.3.1
+altair==5.2.0
