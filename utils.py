@@ -38,16 +38,15 @@ def load_data_from_csv():
         
         # --- 💡 CSV 컬럼 이름 매핑 (사장님 파일 기준) ---
         # Google Sheets 열 이름 -> CSV 열 이름
-        master_df = master_df.rename(columns={
-            "Contract": "Kol_ID",
-            "KOL Type": "KOL_Type",
-            "KOL Name": "Name",
-            "Country": "Country",
-            "Contract Start Date": "Contract_Start",
-            "Contract End Date": "Contract_End",
-            "Contract Value (USD)": "Budget (USD)",
-            # "Spent (USD)"는 CSV에 없어서 0으로 채웁니다. (필요시 추가)
-        })
+master_df = master_df.rename(columns={
+        "Contract": "Kol_ID",
+        "KOL Type": "KOL_Type",
+        "KOL Name": "Name",
+        "Country": "Country",
+        "Contract Start Date": "Contract Start",
+        "Contract End Date": "Contract End", # 💡 이 "Contract End Date" 부분이 틀렸습니다!
+        "Contract Value (USD)": "Budget (USD)",
+    })
         
         activities_df = activities_df.rename(columns={
             "Activity ID": "Activity_ID",
