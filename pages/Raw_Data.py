@@ -1,12 +1,12 @@
 import streamlit as st
 import pandas as pd
 from datetime import datetime
-from utils import load_data_from_gsheet, highlight_master_row, highlight_activity_row # 💡 공용 함수 임포트
+from utils import load_data_from_csv, highlight_master_row, highlight_activity_row # 💡 공용 함수 임포트 이름 변경
 
 st.set_page_config(page_title="원본 데이터", layout="wide")
-st.title("🗃️ 4. 원본 데이터 (Raw Data)")
+st.title("🗃️ 3. 원본 데이터 (Raw Data)")
 
-master_df, activities_df = load_data_from_gsheet()
+master_df, activities_df = load_data_from_csv() # 💡 함수 이름 변경
 
 # -----------------------------------------------------------------
 # 1. 원본 데이터 UI
@@ -18,7 +18,7 @@ if master_df is not None and activities_df is not None:
     
     today = datetime.now() 
 
-    st.subheader("KOL 마스터")
+    st.subheader("KOL 마스터 (Contracts)")
     if selected_name == "전체":
         st.dataframe(
             master_df.style.apply(highlight_master_row, today=today, axis=1).format({'Contract_End': lambda x: x.strftime('%Y-%m-%d') if pd.notnull(x) else ''}),
@@ -34,7 +34,7 @@ if master_df is not None and activities_df is not None:
 
     st.divider()
 
-    st.subheader("모든 활동 내역")
+    st.subheader("모든 활동 내역 (KOL Activities)")
     if selected_name == "전체":
         st.dataframe(
             activities_df.style.apply(highlight_activity_row, today=today, axis=1).format({'Due_Date': lambda x: x.strftime('%Y-%m-%d') if pd.notnull(x) else ''}),
